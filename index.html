@@ -27,9 +27,11 @@
 				Presentation
 			</h3>
 			<p>
-				Simple identity server is an Open-Id implementation developed in C#. It covers all the Open-Id certifications from the most basic one to the most complicate which consists to dynamically register the client.
-				Since the release candidate 1.0.0-RC1, the framework can be installed on an ASP.NET 5 (VNEXT) project as a Nuget package.</br>
-				<i>Remark : The previous version of ASP.NET is also supported but there's no nuget package available on the feed.</i>
+				Simple identity server is an Open-Id implementation developed in C#. </br>
+				It covers all the Open-Id certifications from the most basic one to the most complicate which consists to register a client via a request.
+				Since the <a href="">release candidate 1.0.0-RC1</a>, the framework can be installed on an ASP.NET 5 (VNEXT) project.</br></br>
+				The <a href="https://github.com/thabart/SimpleIdentityServer">master branch</a> supports the newest version of ASP.NET.</br>
+				If you are working with a previous version the resources can be fetched from the branch <a href="https://github.com/thabart/SimpleIdentityServer/tree/develop/ASPMVC">develop/ASPMVC</a>.
 			</p>
 		</div>
 		<div>
@@ -37,18 +39,75 @@
 				<a class="anchor" href="Quick start">
 					<span class="octicon octicon-link"></span>
 				</a>
-				Quick start
+				Simple Identity Server up & running in 5 steps
 			</h3>
+			<h4>
+				Step 1 : Configuration file
+			</h4>
 			<p>
-				
+				Add a new nuget source into your Nuget's configuration file : <code>https://www.myget.org/F/aspnetvnext/api/v3/index.json</code></br>
+				<b>Note: </b> the default location for this file is : <code>%APPDATA%\NuGet\NuGet.Config</code>
 			</p>
+			<h4>
+				Step 2 : Your environment
+			</h4>
+			<p>
+				Before you can start using the framework. Be-sure that all the pre-requisistes are installed on your machine otherwise you'll not be able to develop ASP.NET 5 project :
+				<ul>
+					<li>If the .NET Version manager (DNVM) is not installed then open CMD window & execute the command : <code>powershell -NoProfile -ExecutionPolicy unrestricted -Command "&{iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.ps1'))}"</code></li>
+					<li>Upgrade the DNX tool to the latest version (current one is : 1.0.0-rc1-update1) : <code>dnvm upgrade</code></li>
+					<li>ASP.NET 5 project can be developed with Visual Studio 2015 or an open-source IDE on which you can install OmniSharp for example Visual Studio Code, ATOM, Brackets etc ...</li>
+				</ul>
+			</p>
+			<h4>
+				Step 3 : Installation
+			</h4>
+			<p>
+				Add the Nuget package "SimpleIdentityServer.Host" into your project : <code>"SimpleIdentityServer.Host": "1.0.0-rc1-final"</code> and restore all the dependencies (CMD : dnu restore)
+			</p>
+			<h4>
+				Step 4 : Simple implementation
+			</h4>
+			<p>
+				Swagger is used to interact with the Open-Id endpoints. It easy to enable / disable by creating a new instance of "SwaggerOptions" and pass it as parameter to the methods AddSimpleIdentityServer & UseSimpleIdentityServer methods.
+				<pre>
+_swaggerOptions = new SwaggerOptions
+{
+	IsSwaggerEnabled = true
+};
+				</pre>
+				To inject the framework dependencies use the method AddSimpleIdentityServer. In the sample the Open-Id assets are stored in Memory.
+				</br>
+				<pre>
+services.AddSimpleIdentityServer(new DataSourceOptions {
+    DataSourceType = DataSourceTypes.InMemory,
+    ConnectionString = connectionString,
+    Clients = Clients.Get(),
+    JsonWebKeys = JsonWebKeys.Get(),
+    ResourceOwners = ResourceOwners.Get(),
+    Scopes = Scopes.Get(),
+    Translations = Translations.Get()
+    }, _swaggerOptions);
+				</pre>
+				Finally configure the application with the method UseSimpleIdentityServer. If you want more details about the different options you can refer to the <a href="#">technical documentation</a>.
+				<pre>
+app.UseSimpleIdentityServer(new HostingOptions
+{
+	IsDeveloperModeEnabled = false,
+    IsMicrosoftAuthenticationEnabled = true,
+    MicrosoftClientId = Configuration["Microsoft:ClientId"],
+    MicrosoftClientSecret = Configuration["Microsoft:ClientSecret"],
+    IsFacebookAuthenticationEnabled = true,
+    FacebookClientId = Configuration["Facebook:ClientId"],
+    FacebookClientSecret = Configuration["Facebook:ClientSecret"]
+}, _swaggerOptions);
+				</pre>
+			</p>
+			<h4>
+				Step 5 : Run
+			</h4>
+			<p>Run & enjoy the application !</p>
 		</div>
-		<h3>
-			<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact
-		</h3>
-		<p>
-			Having trouble with Pages? Check out our <a href="https://help.github.com/pages">documentation</a> or <a href="https://github.com/contact">contact support</a> and we’ll help you sort it out.
-		</p>
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/thabart/SimpleIdentityServer">Simple identity server</a> is maintained by <a href="https://github.com/thabart">thabart</a>.</span>
       </footer>
