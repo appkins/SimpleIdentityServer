@@ -45,8 +45,8 @@
 				Step 1 : Configuration file
 			</h4>
 			<p>
-				Add a new nuget source into your Nuget's configuration file : <code>https://www.myget.org/F/aspnetvnext/api/v3/index.json</code></br>
-				<b>Note: </b> the default location for this file is : <code>%APPDATA%\NuGet\NuGet.Config</code>
+				Add new nuget sources into your Nuget's configuration file : <code>https://www.myget.org/F/aspnetvnext/api/v3/index.json</code> & <code>https://www.myget.org/F/thabart/api/v3/index.json</code></br>
+				<b>Note: </b> the default file location is : <code>%APPDATA%\NuGet\NuGet.Config</code>
 			</p>
 			<h4>
 				Step 2 : Your environment
@@ -69,7 +69,7 @@
 				Step 4 : Simple implementation
 			</h4>
 			<p>
-				Swagger is used to interact with the Open-Id endpoints. It easy to enable / disable by creating a new instance of "SwaggerOptions" and pass it as parameter to the methods AddSimpleIdentityServer & UseSimpleIdentityServer methods.
+				Swagger is used to interact with the Open-Id endpoints. It's easy to enable / disable by creating a new instance of "SwaggerOptions" and pass it as parameter to the methods AddSimpleIdentityServer & UseSimpleIdentityServer methods.
 				<pre>
 _swaggerOptions = new SwaggerOptions
 {
