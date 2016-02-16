@@ -8,6 +8,7 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+	<link rel="stylesheet" href="octicons/octicons.css">
   </head>
   <body>
     <section class="page-header">
@@ -21,25 +22,19 @@
     <section class="main-content">
 		<div>
 			<h3>
-				<a class="anchor" href="#presentation" aria-hidden="true">
-					<span class="octicon octicon-link"></span>
-				</a>
 				Presentation
 			</h3>
 			<p>
 				Simple identity server is an Open-Id implementation developed in C#. </br>
 				It covers all the Open-Id certifications from the most basic one to the most complicate which consists to register a client via a request.
-				Since the <a href="">release candidate 1.0.0-RC1</a>, the framework can be installed on an ASP.NET 5 (VNEXT) project.</br></br>
+				Since the <a href="https://github.com/thabart/SimpleIdentityServer/releases/tag/1.0.0-rc1-final">release candidate 1.0.0-RC1</a>, the framework can be installed on an ASP.NET 5 (VNEXT) project.</br></br>
 				The <a href="https://github.com/thabart/SimpleIdentityServer">master branch</a> supports the newest version of ASP.NET.</br>
 				If you are working with a previous version the resources can be fetched from the branch <a href="https://github.com/thabart/SimpleIdentityServer/tree/develop/ASPMVC">develop/ASPMVC</a>.
 			</p>
 		</div>
 		<div>
 			<h3>
-				<a class="anchor" href="Quick start">
-					<span class="octicon octicon-link"></span>
-				</a>
-				Simple Identity Server up & running in 5 steps
+				Simple identity server up & running in 5 steps
 			</h3>
 			<h4>
 				Step 1 : Configuration file
@@ -54,7 +49,7 @@
 			<p>
 				Before you can start using the framework. Be-sure that all the pre-requisistes are installed on your machine otherwise you'll not be able to develop ASP.NET 5 project :
 				<ul>
-					<li>If the .NET Version manager (DNVM) is not installed then open CMD window & execute the command : <code>powershell -NoProfile -ExecutionPolicy unrestricted -Command "&{iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.ps1'))}"</code></li>
+					<li>If the .NET Version manager (DNVM) is not installed then open CMD window & execute the command : <pre>powershell -NoProfile -ExecutionPolicy unrestricted -Command "&{iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.ps1'))}"</pre></li>
 					<li>Upgrade the DNX tool to the latest version (current one is : 1.0.0-rc1-update1) : <code>dnvm upgrade</code></li>
 					<li>ASP.NET 5 project can be developed with Visual Studio 2015 or an open-source IDE on which you can install OmniSharp for example Visual Studio Code, ATOM, Brackets etc ...</li>
 				</ul>
@@ -69,7 +64,7 @@
 				Step 4 : Simple implementation
 			</h4>
 			<p>
-				Swagger is used to interact with the Open-Id endpoints. It's easy to enable / disable by creating a new instance of "SwaggerOptions" and pass it as parameter to the methods AddSimpleIdentityServer & UseSimpleIdentityServer methods.
+				Swagger is used to interact with the Open-Id endpoints. It's easy to enable / disable it by creating a new instance of "SwaggerOptions" and pass it as parameter to the methods AddSimpleIdentityServer & UseSimpleIdentityServer methods.
 				<pre>
 _swaggerOptions = new SwaggerOptions
 {
@@ -106,11 +101,19 @@ app.UseSimpleIdentityServer(new HostingOptions
 			<h4>
 				Step 5 : Run
 			</h4>
-			<p>Run & enjoy the application !</p>
+			<p>Run & enjoy the application ! The sample project can be found <a href="https://github.com/thabart/SimpleIdentityServer/tree/master/SimpleIdentityServer/src/SimpleIdentityServer.Startup">here</a></p>
 		</div>
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/thabart/SimpleIdentityServer">Simple identity server</a> is maintained by <a href="https://github.com/thabart">thabart</a>.</span>
       </footer>
     </section>  
   </body>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script type="text/javascript" src="scripts/anchor.js"></script>
+  <script type="text/javascript">
+		$(document).ready(function() {
+			anchors.add('h3');
+			anchors.add('h4');
+		});
+  </script>
 </html>
